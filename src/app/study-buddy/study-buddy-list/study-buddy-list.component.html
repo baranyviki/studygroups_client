@@ -1,0 +1,23 @@
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+    <mat-card fxFlex="80%" fxFlex.xs="100%">
+        <mat-card-header>
+            <mat-card-title>Szűrő paramtérek</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="filters-form" fxLayout="row wrap">
+                <mat-form-field fxFlex="50%" fxFlex.xs="100%">
+                    <input matInput type="text" placeholder="Kérjük válassz egy tantárgyat" aria-label="Tantárgy"
+                        [formControl]="subjectControl" [matAutocomplete]="subjectAutocomplete">
+                    <mat-autocomplete #subjectAutocomplete="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let subject of filteredSubjects | async" [value]="subject">
+                            {{subject.displayName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Keresés</button>
+        </mat-card-actions>
+    </mat-card>
+</section>
