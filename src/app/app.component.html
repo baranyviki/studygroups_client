@@ -3,7 +3,7 @@
     <mat-sidenav #sidenav role="navigation">
       <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content> 
       <app-menu-bar (sidenavToggle)="sidenav.toggle()"></app-menu-bar>
       <main>
         <router-outlet></router-outlet>

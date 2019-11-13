@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
-    { path: 'study-buddy', loadChildren: () => import('./study-buddy/study-buddy.module').then(mod => mod.StudyBuddyModule) }
+    { path: 'study-buddy', loadChildren: () => import('./study-buddy/study-buddy.module').then(mod => mod.StudyBuddyModule) },
+    {path: 'registration', loadChildren: () => import('./registration/registration.module').then(mod => mod.RegistrationModule)}
+
 ]
 
 @NgModule({
@@ -17,4 +19,5 @@ const routes: Routes = [
         RouterModule
     ]
 })
+
 export class RoutingModule { }

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { GeneralSelectionItem } from 'src/app/models/shared/general-selection-item.model';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { StudyBuddyService } from '../study-buddy.service';
+import { StudyBuddyListItem } from 'src/app/models/study-buddy/study-buddy-list-item.model';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-study-buddy-list',
@@ -15,12 +17,22 @@ export class StudyBuddyListComponent implements OnInit {
   subjectControl = new FormControl('', [Validators.required]);
   subjects: GeneralSelectionItem[];
   filteredSubjects: Observable<GeneralSelectionItem[]>;
+  dataSource: MatTableDataSource<StudyBuddyListItem>;
+  displayedColumns: string[] = ['name', 'email'];
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private studyBuddyService: StudyBuddyService
   ) { }
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource();
+
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
     this.getSubjects();
   }
 
@@ -48,5 +60,20 @@ export class StudyBuddyListComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.subjects.filter(subject => subject.displayName.toLowerCase().includes(filterValue));
+  }
+
+  search() {
+    const subjectId = (this.subjectControl.value as GeneralSelectionItem).id;
+    this.studyBuddyService.getStudyBuddyList(subjectId).subscribe(result => {
+      this.dataSource.data = result;
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

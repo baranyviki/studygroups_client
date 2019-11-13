@@ -12,6 +12,7 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { StudyBuddyModule } from './study-buddy/study-buddy.module';
 import { RoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrationModule } from './registration/registration.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatToolbarModule,
     RoutingModule,
-    StudyBuddyModule
+    StudyBuddyModule,
+    RegistrationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
