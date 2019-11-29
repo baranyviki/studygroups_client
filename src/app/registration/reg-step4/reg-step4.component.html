@@ -1,8 +1,8 @@
-<div *ngIf="formSubmitted">
-    <h4>Registration done</h4>
-</div>
 <div *ngIf="!formSubmitted">
     <h4>Well done, if you're ready, hit submit!</h4>
+</div>
+<div *ngIf="formSubmitted">
+    <h4>Please make sure, that your exports are in good format. And </h4>
+</div>
     <button mat-raised-button type="button" matStepperPrevious>Back</button>
     <button mat-raised-button type="button" (click)="submit()">Submit</button>
-</div>

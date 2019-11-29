@@ -21,6 +21,6 @@ export class RegistrationService extends HttpBaseService {
 
     public registrateUser(regModel: FormData)
     {
-        return this.http.post(this.createCompleteRouteWithMethodName('authentication','CreateUser'),regModel);
+        return this.http.post(this.createCompleteRouteWithMethodName('authentication','registration'),regModel);
     }
 }

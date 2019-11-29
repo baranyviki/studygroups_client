@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-bar',
@@ -9,7 +10,7 @@ export class MenuBarComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
 
-  constructor() { }
+  constructor(private router :Router) { }
 
   ngOnInit() {
   }
@@ -19,7 +20,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   logout() {
-    // localStorage.removeItem("jwt");
-    // this.router.navigate(['/login']);
+     localStorage.removeItem("jwt");
+     this.router.navigate(['/login']);
   }
 }

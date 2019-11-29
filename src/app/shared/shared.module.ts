@@ -4,7 +4,6 @@ import { ErrorModalComponent } from './modals/error-modal/error-modal.component'
 import { SuccessModalComponent } from './modals/success-modal/success-modal.component';
 
 
-
 @NgModule({
   declarations: [ErrorModalComponent, SuccessModalComponent],
   imports: [

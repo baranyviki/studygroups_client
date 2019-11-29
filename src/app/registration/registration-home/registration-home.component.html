@@ -15,7 +15,7 @@
           <ng-template matStepLabel>Enter Account Details</ng-template>
           <app-reg-step3 [regForm]="registrationForm"></app-reg-step3>
         </mat-step>
-        <mat-step>
+        <mat-step formGroupName="neptunDetails" [stepControl]="registrationForm.get('neptunDetails')">
           <ng-template matStepLabel>Neptun Details</ng-template>
           <app-reg-step5 [regForm]="registrationForm"></app-reg-step5>
         </mat-step>

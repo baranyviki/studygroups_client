@@ -6,7 +6,7 @@ import { RegStep3Component } from './reg-step3/reg-step3.component';
 import { RegistrationHomeComponent } from './registration-home/registration-home.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -39,7 +39,6 @@ import { RegStep5Component } from './reg-step5/reg-step5.component';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     FlexLayoutModule,
     MatCardModule,
     MatToolbarModule,
@@ -55,7 +54,7 @@ import { RegStep5Component } from './reg-step5/reg-step5.component';
     MatProgressBarModule,
     CommonModule,
     RouterModule.forChild(
-      [{ path: '', component: RegistrationHomeComponent }]
+      [{ path: 'registration', component: RegistrationHomeComponent }]
     )
   ]
 })

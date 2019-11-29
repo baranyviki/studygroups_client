@@ -13,11 +13,11 @@ import { RegistrationModel } from 'src/app/models/registration/registration.mode
 })
 export class RegStep4Component implements OnInit {
 
-  constructor(private registrationService: RegistrationService) { }
+  constructor(private registrationService: RegistrationService,private router: Router) { }
 
   @Input() regForm: FormGroup;
   formSubmitted: boolean = false;
-  private router: Router;
+
   ngOnInit() {
   }
 
@@ -42,25 +42,15 @@ export class RegStep4Component implements OnInit {
     formdata.append('username', this.regForm.value.accountDetails.username);
     formdata.append('password', this.regForm.value.accountDetails.password);
     formdata.append('image', this.regForm.value.accountDetails.image);
-
+    formdata.append('neptuncode', this.regForm.value.neptunDetails.neptuncode);
+    formdata.append('gradebook', this.regForm.value.neptunDetails.gradebook);
+    formdata.append('courses', this.regForm.value.neptunDetails.courses);
     console.log(formdata);
-
-    // console.log(formdata.get('firstname'));
-    // console.log(formdata.get('lastname'));
-    // console.log(formdata.get('birthday'));
-    // console.log(formdata.get('gender'));
-    // console.log(formdata.get('email'));
-    // console.log(formdata.get('messengername'));
-    // console.log(formdata.get('instagramname'));
-    // console.log(formdata.get('username'));
-    // console.log(formdata.get('password'));
-    // console.log(formdata.get('image'));
-
 
     this.registrationService.registrateUser(formdata).pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         },
         error => {
         });
