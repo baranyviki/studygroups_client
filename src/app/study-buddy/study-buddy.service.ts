@@ -17,7 +17,7 @@ export class StudyBuddyService extends HttpBaseService {
     }
 
     public getSubjectSelections(): Observable<GeneralSelectionItem[]> {
-        return this.http.get<GeneralSelectionItem[]>(this.createCompleteRouteWithMethodName('subject', 'selections'));
+        return this.http.get<GeneralSelectionItem[]>(this.createCompleteRouteWithMethodName('subject', 'selections'),this.generateHeaderWithContentTypeAndAuthorization());
     }
 
     public getStudyBuddyList(subjectId: number): Observable<StudyBuddyListItem[]> {

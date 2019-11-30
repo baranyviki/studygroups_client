@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   declarations: [LoginComponent],
   imports: [
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    FlexLayoutModule,
     RouterModule.forChild(
       [{ path: '', component: LoginComponent }]
     )

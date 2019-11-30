@@ -15,6 +15,7 @@ import { RoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrationModule } from './registration/registration.module';
 import { AuthGuard } from './guards/auth-guard.service';
+import { NotFoundComponent } from './components/error-pages/not-found/not-found.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -25,7 +26,8 @@ export function tokenGetter() {
     AppComponent,
     LayoutComponent,
     SidenavListComponent,
-    MenuBarComponent
+    MenuBarComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

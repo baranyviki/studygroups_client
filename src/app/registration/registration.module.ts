@@ -54,7 +54,7 @@ import { RegStep5Component } from './reg-step5/reg-step5.component';
     MatProgressBarModule,
     CommonModule,
     RouterModule.forChild(
-      [{ path: 'registration', component: RegistrationHomeComponent }]
+      [{ path: '', component: RegistrationHomeComponent }]
     )
   ]
 })

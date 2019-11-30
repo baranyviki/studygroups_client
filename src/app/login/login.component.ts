@@ -23,9 +23,12 @@ export class LoginComponent implements OnInit {
     this.loginService.loginAUT(credentials).
     subscribe(response => {
       let token = (<any>response).token;
+      localStorage.setItem("username", form.value.Username);
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
-      this.router.navigate(["/"]);
+      console.log(localStorage.getItem("username"));
+      console.log(form.value.Username);
+      this.router.navigate(["/study-buddy"]);
     }, err => {
       this.invalidLogin = true;
       //TODO: ERROR HANDLING!

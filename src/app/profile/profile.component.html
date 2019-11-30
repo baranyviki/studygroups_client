@@ -1,0 +1,55 @@
+<mat-grid-list cols="2" >
+    <mat-grid-tile >
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>Profile picture</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                    <img [src]="createImgPath(profile.imagePath)" alt="profile picture" style="width:60px; height:60px;">
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <button mat-raised-button color="primary">Modify profile</button>
+            </mat-card-actions> -->
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card >
+            <mat-card-header>
+                <mat-card-title>Profile infos</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+            <label>First Name</label>
+            <input type ="text" value={{profile.firstName}}>
+            <br/>
+            <label>Last Name</label>
+            <input type ="text">
+            <br/>
+            <label>Email</label>
+            <input type ="text">
+            <br/>
+            <label>Messenger</label>
+            <input type ="text">
+            <br/>
+            <label>Instagram</label>
+            <input type ="text">
+            <br/>
+            <label>Username</label>
+            <input type ="text">
+            <br/>    
+            <label>Date of birth</label>
+            <input type ="text">
+            <br/>    
+            <label>Gender Type</label>
+            <input type ="text">
+            <br/>    
+
+            <label>Neptun Code</label>
+            <input type ="text">
+            <br/>    
+        </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Modify profile</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
