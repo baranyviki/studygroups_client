@@ -6,10 +6,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./success-modal.component.scss']
 })
 export class SuccessModalComponent implements OnInit {
-  @Input() public modalHeaderText: string;
-  @Input() public modalBodyText: string;
-  @Input() public okButtonText: string;
-  @Output() public redirectOnOK = new EventEmitter();
+  // @Input() public modalHeaderText: string;
+  // @Input() public modalBodyText: string;
+  // @Input() public okButtonText: string;
+  // @Output() public redirectOnOK = new EventEmitter();
   
   constructor() { }
 

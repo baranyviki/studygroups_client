@@ -1,55 +1,55 @@
-<mat-grid-list cols="2" >
-    <mat-grid-tile >
-        <mat-card >
-            <mat-card-header>
-                <mat-card-title>Profile picture</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                    <img [src]="createImgPath(profile.imagePath)" alt="profile picture" style="width:60px; height:60px;">
-            </mat-card-content>
-            <!-- <mat-card-actions>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
+    <mat-card fxFlex="300px" fxFlexOffset="50px">
+        <mat-card-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px">
+            <img [src]="createImgPath()" alt="profile picture" class="profile-image">
+            <h1>{{profile.firstName + ' ' + profile.lastName}}</h1>
+            <div class="external-links" fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="50px">
+                <a [attr.href]="createMailTo()">
+                    <mat-icon>email</mat-icon>
+                </a>
+                <a [attr.href]="createInstagramLink()" target="_blank">
+                    <i color="primary" class="fab fa-instagram"></i>
+                </a>
+                <a [attr.href]="createMessengerLink()" target="_blank">
+                    <i color="primary" class="fab fa-facebook-messenger"></i>
+                </a>
+            </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
                 <button mat-raised-button color="primary">Modify profile</button>
             </mat-card-actions> -->
-        </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <mat-card >
-            <mat-card-header>
-                <mat-card-title>Profile infos</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-            <label>First Name</label>
-            <input type ="text" value={{profile.firstName}}>
-            <br/>
-            <label>Last Name</label>
-            <input type ="text">
-            <br/>
-            <label>Email</label>
-            <input type ="text">
-            <br/>
-            <label>Messenger</label>
-            <input type ="text">
-            <br/>
-            <label>Instagram</label>
-            <input type ="text">
-            <br/>
-            <label>Username</label>
-            <input type ="text">
-            <br/>    
-            <label>Date of birth</label>
-            <input type ="text">
-            <br/>    
-            <label>Gender Type</label>
-            <input type ="text">
-            <br/>    
+    </mat-card>
 
-            <label>Neptun Code</label>
-            <input type ="text">
-            <br/>    
+    <mat-card fxFlex="500px">
+        <mat-card-header>
+            <mat-card-title>About</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <table class="table table-striped">
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td>{{profile.email}}</td>
+                </tr>
+                <tr>
+                    <td> <label>Username: </label></td>
+                    <td>{{profile.userName}}</td>
+                </tr>
+                <tr>
+                    <td> <label>Date of birth: </label></td>
+                     <td>{{profile.dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <td><label>Gender type:</label></td>
+                    <td>{{profile.genderType}}</td>
+                </tr>
+                <tr>
+                    <td><label>Neptun code:</label></td>
+                    <td>{{profile.neptunCode}}</td>
+                </tr>
+            </table>
         </mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="primary">Modify profile</button>
-            </mat-card-actions>
-        </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>
+        <mat-card-actions fxLayoutAlign="end start">
+            <button mat-raised-button color="primary">Modify profile</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

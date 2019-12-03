@@ -1,19 +1,9 @@
-<div id="successModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" (click)="emmitEvent()">&times;</button>
-                <h4 class="modal-title">{{modalHeaderText}}</h4>
-            </div>
-            <div class="modal-body">
-                <p>{{modalBodyText}}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal"
-                    (click)="emmitEvent()">{{okButtonText}}</button>
-            </div>
-        </div>
-
-    </div>
-</div>
+<section fxLayout="column" fxLayoutAlign="center center">
+    <h1 mat-dialog-title>Success message</h1>
+    <mat-dialog-content>
+        <p>Action completed successfully</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true">OK</button>
+    </mat-dialog-actions>
+</section>

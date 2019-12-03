@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfileComponent implements OnInit {
 
-  profile: UserProfileModel;
+  profile = {} as UserProfileModel;
 
   constructor(private profileService: ProfileService) { }
 
@@ -26,12 +26,27 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  public createImgPath = (serverPath:string) => {
-    var link = `${environment.sourcesurl}/${serverPath}`;
-    console.log(link);
-    return link;
+  public createImgPath = () => {
+    if(this.profile && this.profile.imagePath){
+      var link = `${environment.sourcesurl}/${this.profile.imagePath}`;
+      //console.log(link);
+      return link;
+    }
+
+    return '';
   }
 
+  public createMailTo() {
+    return `mailto:${this.profile.email}`;
+  }
+
+  public createMessengerLink() {
+    return `https://www.messenger.com/t/${this.profile.messengerName}`;
+  }
+
+  public createInstagramLink() {
+    return `https://www.instagram.com/${this.profile.instagramName}`;
+  }
 }
 
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
-import { MatCardModule, MatGridListModule } from '@angular/material';
+import { MatCardModule, MatGridListModule, MatIconModule, MatButtonModule , MatTableModule} from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -12,7 +12,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     MatCardModule,
     MatGridListModule,
+    MatIconModule,
+    MatTableModule,
     FlexLayoutModule,
+    MatButtonModule,
     RouterModule.forChild(
       [{ path: '', component: ProfileComponent }]
     )

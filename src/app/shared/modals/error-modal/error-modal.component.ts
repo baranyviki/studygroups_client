@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-error-modal',
@@ -6,13 +7,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./error-modal.component.scss']
 })
 export class ErrorModalComponent implements OnInit {
-  @Input() public modalHeaderText: string;
-  @Input() public modalBodyText: string;
-  @Input() public okButtonText: string;
   
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<ErrorModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }
 
+  public closeDialog = () => {
+    this.dialogRef.close();
+  }
 }

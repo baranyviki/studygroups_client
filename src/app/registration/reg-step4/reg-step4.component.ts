@@ -5,6 +5,7 @@ import { HttpEventType } from '@angular/common/http';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { RegistrationModel } from 'src/app/models/registration/registration.model';
+import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 
 @Component({
   selector: 'app-reg-step4',
@@ -13,7 +14,7 @@ import { RegistrationModel } from 'src/app/models/registration/registration.mode
 })
 export class RegStep4Component implements OnInit {
 
-  constructor(private registrationService: RegistrationService,private router: Router) { }
+  constructor(private registrationService: RegistrationService,private router: Router,private errorHandler: ErrorHandlerService) { }
 
   @Input() regForm: FormGroup;
   formSubmitted: boolean = false;
@@ -53,6 +54,7 @@ export class RegStep4Component implements OnInit {
           this.router.navigate(['/login']);
         },
         error => {
+          this.errorHandler.handleError(error);
         });
 
     //go to login page if ready

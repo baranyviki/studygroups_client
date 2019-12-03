@@ -25,6 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { RegStep4Component } from './reg-step4/reg-step4.component';
 import { RegStep5Component } from './reg-step5/reg-step5.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { RegStep5Component } from './reg-step5/reg-step5.component';
     MatInputModule,
     MatProgressBarModule,
     CommonModule,
+    SharedModule,
     RouterModule.forChild(
       [{ path: '', component: RegistrationHomeComponent }]
     )
