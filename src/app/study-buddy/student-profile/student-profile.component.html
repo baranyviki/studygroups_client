@@ -39,10 +39,6 @@
                     <td><label>Gender type:</label></td>
                     <td>{{profile.genderType}}</td>
                 </tr>
-                <tr>
-                    <td><label>Neptun code:</label></td>
-                    <td>{{profile.neptunCode}}</td>
-                </tr>
             </table>
             <br />
             <table class="table">
@@ -56,8 +52,5 @@
                 </tbody>
             </table>
         </mat-card-content>
-        <mat-card-actions fxLayoutAlign="end start">
-            <button *ngIf="isLoggedInUsersProfile" mat-raised-button color="primary" (click)="redirectToModProfile()">Modify profile</button>
-        </mat-card-actions>
     </mat-card>
 </div>

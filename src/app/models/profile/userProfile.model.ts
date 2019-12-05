@@ -1,3 +1,4 @@
+import { SubjectModel } from './subject.model';
 export interface UserProfileModel{
     firstName: string,
     lastName:string,
@@ -8,6 +9,7 @@ export interface UserProfileModel{
     instagramName:string,
     username:string,
     password:string,
-    neptuncode:string,
-    imagePath:string
+    neptunCode:string,
+    imagePath:string,
+    tutoringSubjects:SubjectModel[]
 }

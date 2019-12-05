@@ -8,6 +8,7 @@ import { StudyBuddyService } from '../study-buddy.service';
 import { startWith, map } from 'rxjs/operators';
 import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 import { StudyGroupSearchModel } from 'src/app/models/study-buddy/study-group-search.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-study-team-search',
@@ -20,14 +21,15 @@ export class StudyTeamSearchComponent implements OnInit {
   subjects: GeneralSelectionItem[];
   filteredSubjects: Observable<GeneralSelectionItem[]>;
   dataSource: MatTableDataSource<StudyBuddyListItem>;
-  displayedColumns: string[] = ['name', 'email'];
+  displayedColumns: string[] = ['name', 'email', 'details'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private studyBuddyService: StudyBuddyService,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,11 +50,13 @@ export class StudyTeamSearchComponent implements OnInit {
 
   }
 
-  public hasError = (controlName: string, errorName: string) =>{
-    console.log('control check error.');
-    return this.studyteamFilterForm.controls[controlName].hasError(errorName);
+  public redirectToDetails = (id: string) => {
+    console.log('userid:');
+    
+    console.log(id);
+    let url: string = `/study-buddy/profile/${id}`;
+    this.router.navigate([url]);
   }
-
   getSubjects() {
     this.studyBuddyService.getCourseSelectionsForUserInCurrentSemester().subscribe(result => {
       this.subjects = result;

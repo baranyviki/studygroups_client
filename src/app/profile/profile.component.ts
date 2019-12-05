@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
 import { UserProfileModel } from '../models/profile/userProfile.model';
 import { ProfileService } from './profile.service';
 import { environment } from 'src/environments/environment';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ErrorHandlerService } from '../shared/error-handler.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,29 +13,55 @@ import { environment } from 'src/environments/environment';
 export class ProfileComponent implements OnInit {
 
   profile = {} as UserProfileModel;
-
-  constructor(private profileService: ProfileService) { }
+  isLoggedInUsersProfile: boolean;
+  constructor(private profileService: ProfileService, private router: Router, private activeRoute: ActivatedRoute, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
-    var username = localStorage.getItem("username");
-    console.log(username);
-    this.profileService.getStudentProfileDetails(username).subscribe(result => {
-      this.profile = result as UserProfileModel;
-      console.log(this.profile);
-    },
-    error => {
-    });
+    this.getProfile();
+  }
 
+  getProfile() {
+    let id: string = this.activeRoute.snapshot.params['id'];
+    console.log(`id:${id}`)
+    if (id == null) {
+      this.getLoggedInProfile();
+      this.isLoggedInUsersProfile = true;
+    } else {
+      this.getOtherProfile(id);
+      this.isLoggedInUsersProfile = false;
+    }
+    console.log('logged in user?');
+    console.log(this.isLoggedInUsersProfile);
+  }
+
+  getOtherProfile(id: string) {
+    this.profileService.getStudentProfileById(id).subscribe(result => {
+      this.profile = result;
+    },
+      error => {
+        this.errorHandler.handleError(error);
+      });
+  }
+
+  getLoggedInProfile() {
+    this.profileService.getStudentProfileDetails().subscribe(result => {
+      this.profile = result;
+    },
+      error => {
+        this.errorHandler.handleError(error);
+      });
   }
 
   public createImgPath = () => {
-    if(this.profile && this.profile.imagePath){
+    if (this.profile && this.profile.imagePath) {
       var link = `${environment.sourcesurl}/${this.profile.imagePath}`;
-      //console.log(link);
       return link;
     }
+    return `${environment.sourcesurl}/Resources/Images/blank-profile.png`;
+  }
 
-    return '';
+  public redirectToModProfile() {
+    this.router.navigate(['profile/update']);
   }
 
   public createMailTo() {

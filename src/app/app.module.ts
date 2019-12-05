@@ -17,6 +17,7 @@ import { RegistrationModule } from './registration/registration.module';
 import { AuthGuard } from './guards/auth-guard.service';
 import { NotFoundComponent } from './components/error-pages/not-found/not-found.component';
 import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
+import { HomeComponent } from './components/home/home.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -29,7 +30,8 @@ export function tokenGetter() {
     SidenavListComponent,
     MenuBarComponent,
     NotFoundComponent,
-    InternalServerComponent
+    InternalServerComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ export function tokenGetter() {
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatButtonModule,
     RoutingModule,
     StudyBuddyModule,
     RegistrationModule,

@@ -1,27 +1,27 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="mat-elevation-z8">
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
         </button>
     </div>
     <div style="margin-right: 30px;">
-        <a routerLink="/study-buddy">Home</a>
+        <a routerLink="/home" mat-button>
+            <mat-icon>scatter_plot</mat-icon> Home
+        </a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <a routerLink="/profile">My profile</a>
-                <!-- <a class="navbar-brand" routerLink="/profile" routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">My profile</a> -->
+                <a mat-button routerLink="/profile"> My profile </a>
             </li>
             <li>
-                <a routerLink="/study-buddy/list">Study Group</a>
+                <a mat-button routerLink="/study-buddy/list">Study Group</a>
             </li>
             <li>
-                <a routerLink="/study-buddy/study-team-search">Team project</a>
+                <a mat-button routerLink="/study-buddy/study-team-search">Team project</a>
             </li>
             <li>
-                <a routerLink="404">Find Tutor</a>
+                <a mat-button routerLink="/study-buddy/tutor-search">Find Tutor</a>
             </li>
         </ul>
     </div>

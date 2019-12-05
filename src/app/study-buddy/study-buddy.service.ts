@@ -6,6 +6,7 @@ import { GeneralSelectionItem } from '../models/shared/general-selection-item.mo
 import { StudyBuddyListItem } from '../models/study-buddy/study-buddy-list-item.model';
 import { StudyGroupSearchModel } from '../models/study-buddy/study-group-search.model';
 import { environment } from 'src/environments/environment';
+import { UserProfileModel } from '../models/profile/userProfile.model';
 
 
 @Injectable({
@@ -32,6 +33,8 @@ export class StudyBuddyService extends HttpBaseService {
         return this.http.get<StudyBuddyListItem[]>(this.createCompleteRoute(`student/group-search/${subjectId}`),this.generateHeaderWithContentTypeAndAuthorization());
     }
     
+ 
+
     public getStudyTeamSearchList(queryParams: StudyGroupSearchModel): Observable<StudyBuddyListItem[]> {
         //return this.http.get<StudyBuddyListItem[]>(this.createCompleteRoute(`student/group-search/${subjectId}`),this.generateHeaderWithContentTypeAndAuthorization());
         let params = new HttpParams();
