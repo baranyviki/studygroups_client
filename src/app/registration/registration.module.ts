@@ -6,7 +6,6 @@ import { RegStep3Component } from './reg-step3/reg-step3.component';
 import { RegistrationHomeComponent } from './registration-home/registration-home.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatToolbarModule,
   MatButtonModule,
@@ -18,6 +17,7 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatRadioModule,
+  MatTooltipModule,
   MatProgressBarModule
 } from '@angular/material';
 import {MatCardModule} from '@angular/material';
@@ -52,6 +52,7 @@ import { SharedModule } from '../shared/shared.module';
     MatListModule,
     MatStepperModule,
     MatInputModule,
+    MatTooltipModule,
     MatProgressBarModule,
     CommonModule,
     SharedModule,

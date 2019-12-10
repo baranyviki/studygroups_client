@@ -6,6 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { StudyBuddyService } from '../study-buddy.service';
 import { StudyBuddyListItem } from 'src/app/models/study-buddy/study-buddy-list-item.model';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-study-buddy-list',
@@ -18,13 +19,14 @@ export class StudyBuddyListComponent implements OnInit {
   subjects: GeneralSelectionItem[];
   filteredSubjects: Observable<GeneralSelectionItem[]>;
   dataSource: MatTableDataSource<StudyBuddyListItem>;
-  displayedColumns: string[] = ['name', 'email'];
+  displayedColumns: string[] = ['name', 'email','details'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private studyBuddyService: StudyBuddyService
+    private studyBuddyService: StudyBuddyService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,14 @@ export class StudyBuddyListComponent implements OnInit {
             map(name => name ? this._filter(name) : this.subjects.slice())
           );
       });
+  }
+
+  public redirectToDetails = (id: string) => {
+    console.log('userid:');
+    
+    console.log(id);
+    let url: string = `/study-buddy/profile/${id}`;
+    this.router.navigate([url]);
   }
 
   displayFn(item?: GeneralSelectionItem): string | undefined {

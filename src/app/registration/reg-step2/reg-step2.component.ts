@@ -20,4 +20,11 @@ export class RegStep2Component implements OnInit {
     this.regForm.get('contactDetails').get('email').updateValueAndValidity();
   }
   
+  public hasError(controlName: string, errorName: string) {
+    if (this.regForm.controls[controlName].hasError(errorName))
+      return true;
+
+    return false;
+  }
+
 }

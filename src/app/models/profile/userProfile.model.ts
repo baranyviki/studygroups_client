@@ -2,7 +2,6 @@ import { SubjectModel } from './subject.model';
 export interface UserProfileModel{
     firstName: string,
     lastName:string,
-    dateofbirth:Date,
     gendertype: number,
     email:string,
     messengerName:string,

@@ -35,7 +35,6 @@ export class RegStep4Component implements OnInit {
     let formdata = new FormData();
     formdata.append('firstname', this.regForm.value.personalDetails.firstname);
     formdata.append('lastname', this.regForm.value.personalDetails.lastname);
-    formdata.append('birthday', this.regForm.value.personalDetails.birthday);
     formdata.append('gender', this.regForm.value.personalDetails.gender);
     formdata.append('email', this.regForm.value.contactDetails.email);
     formdata.append('messengername', this.regForm.value.contactDetails.messengerName);

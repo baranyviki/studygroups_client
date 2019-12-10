@@ -29,11 +29,14 @@ export class StudyBuddyService extends HttpBaseService {
         return this.http.get<GeneralSelectionItem[]>(this.createCompleteRoute(`course/current-courses`),this.generateHeaderWithContentTypeAndAuthorization());
     }
 
-    public getStudyBuddyList(subjectId: number): Observable<StudyBuddyListItem[]> {
+    public getStudyBuddyList(subjectId: string): Observable<StudyBuddyListItem[]> {
         return this.http.get<StudyBuddyListItem[]>(this.createCompleteRoute(`student/group-search/${subjectId}`),this.generateHeaderWithContentTypeAndAuthorization());
     }
     
- 
+    public getTutorListBySubjectId(subjectId: string): Observable<StudyBuddyListItem[]> {
+        return this.http.get<StudyBuddyListItem[]>(this.createCompleteRoute(`student/tutors/${subjectId}`),this.generateHeaderWithContentTypeAndAuthorization());
+    }
+    
 
     public getStudyTeamSearchList(queryParams: StudyGroupSearchModel): Observable<StudyBuddyListItem[]> {
         //return this.http.get<StudyBuddyListItem[]>(this.createCompleteRoute(`student/group-search/${subjectId}`),this.generateHeaderWithContentTypeAndAuthorization());

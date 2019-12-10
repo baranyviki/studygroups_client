@@ -19,9 +19,6 @@ export class MenuBarComponent implements OnInit {
     let token=localStorage.getItem("jwt");
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
-    console.log('token: ');
-    console.log();
-    console.log(decodedToken.sub);    
   }
 
   public onToggleSidenav = () => {

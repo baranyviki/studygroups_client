@@ -39,12 +39,12 @@ export class StudyTeamSearchComponent implements OnInit {
     this.dataSource.sort = this.sort;
 
     this.studyteamFilterForm = new FormGroup({
-      subjectControl : new FormControl('', [Validators.required]),
+      subjectControl: new FormControl('', [Validators.required]),
       gradeAvgControl: new FormControl(''),
       semesterCntControl: new FormControl(''),
       commonCourseControl: new FormControl('')
     });
-  
+
     this.getSubjects();
 
 
@@ -52,11 +52,12 @@ export class StudyTeamSearchComponent implements OnInit {
 
   public redirectToDetails = (id: string) => {
     console.log('userid:');
-    
+
     console.log(id);
     let url: string = `/study-buddy/profile/${id}`;
     this.router.navigate([url]);
   }
+
   getSubjects() {
     this.studyBuddyService.getCourseSelectionsForUserInCurrentSemester().subscribe(result => {
       this.subjects = result;
@@ -85,19 +86,18 @@ export class StudyTeamSearchComponent implements OnInit {
 
   search() {
     const subjectId = (this.studyteamFilterForm.get('subjectControl').value as GeneralSelectionItem).id;
-    let filters = {} as StudyGroupSearchModel; 
+    let filters = {} as StudyGroupSearchModel;
     filters.courseId = this.studyteamFilterForm.value.subjectControl.id;
-    filters.isHavingOtherCourseInCommonCurrently = this.studyteamFilterForm.get('commonCourseControl').value ? this.studyteamFilterForm.get('commonCourseControl').value :"false" ;
-    filters.isSameCompletedSemesters = this.studyteamFilterForm.get('semesterCntControl').value ?this.studyteamFilterForm.get('semesterCntControl').value : "false";
-    filters.isSameGradeAverage = this.studyteamFilterForm.get('gradeAvgControl').value ? this.studyteamFilterForm.get('gradeAvgControl').value :"false";
-  
-    this.studyBuddyService.getStudyTeamSearchList(filters).subscribe(result => {
-    this.dataSource.data = result;
-    },
-    (error) =>{
-      this.errorHandler.handleError(error);
+    filters.isHavingOtherCourseInCommonCurrently = this.studyteamFilterForm.get('commonCourseControl').value ? this.studyteamFilterForm.get('commonCourseControl').value : "false";
+    filters.isSameCompletedSemesters = this.studyteamFilterForm.get('semesterCntControl').value ? this.studyteamFilterForm.get('semesterCntControl').value : "false";
+    filters.isSameGradeAverage = this.studyteamFilterForm.get('gradeAvgControl').value ? this.studyteamFilterForm.get('gradeAvgControl').value : "false";
 
-    }
+    this.studyBuddyService.getStudyTeamSearchList(filters).subscribe(result => {
+      this.dataSource.data = result;
+    },
+      (error) => {
+        this.errorHandler.handleError(error);
+      }
     );
   }
 

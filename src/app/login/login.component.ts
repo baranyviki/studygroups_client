@@ -17,15 +17,8 @@ export class LoginComponent implements OnInit {
 
   invalidLogin: boolean;
   public errorMessage: string = '';
-  // private dialogConfig;
 
   ngOnInit() {
-    // this.dialogConfig = {
-    //   height: '200px',
-    //   width: '400px',
-    //   disableClose: true,
-    //   data: {}
-    // };
 
   }
 
@@ -37,8 +30,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("username", form.value.Username);
         localStorage.setItem("jwt", token);
         this.invalidLogin = false;
-        // console.log(localStorage.getItem("username"));
-        // console.log(form.value.Username);
         this.router.navigate(["/study-buddy"]);
       }, (err) => {
         this.invalidLogin = true;

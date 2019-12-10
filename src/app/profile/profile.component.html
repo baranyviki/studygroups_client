@@ -32,14 +32,10 @@
                     <td>{{profile.userName}}</td>
                 </tr>
                 <tr>
-                    <td> <label>Date of birth: </label></td>
-                    <td>{{profile.dateOfBirth}}</td>
-                </tr>
-                <tr>
                     <td><label>Gender type:</label></td>
                     <td>{{profile.genderType}}</td>
                 </tr>
-                <tr>
+                <tr *ngIf="isLoggedInUsersProfile">
                     <td><label>Neptun code:</label></td>
                     <td>{{profile.neptunCode}}</td>
                 </tr>

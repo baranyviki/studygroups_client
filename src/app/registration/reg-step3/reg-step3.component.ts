@@ -14,11 +14,18 @@ export class RegStep3Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.progress=80;
+    this.progress = 80;
   }
 
-step3Submitted(){
+  step3Submitted() {
 
-}
 
+  }
+  
+  public hasError(controlName: string, errorName: string) {
+    if (this.regForm.controls[controlName].hasError(errorName))
+      return true;
+
+    return false;
+  }
 }

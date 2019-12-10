@@ -6,13 +6,13 @@ import { NotFoundComponent } from './components/error-pages/not-found/not-found.
 import { InternalServerComponent } from './components/error-pages/internal-server/internal-server.component';
 import { HomeComponent } from './components/home/home.component';
 
-
 const routes: Routes = [
     { path: '',  loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule)},
     { path: 'study-buddy', loadChildren: () => import('./study-buddy/study-buddy.module').then(mod => mod.StudyBuddyModule),canActivate: [AuthGuard]},  
     { path: 'login', loadChildren: () => import('./login/login.module').then(mod => mod.LoginModule) },
     { path: 'registration', loadChildren: () => import('./registration/registration.module').then(mod => mod.RegistrationModule) },
     { path: 'profile', loadChildren: () => import('./profile/profile.module').then(mod => mod.ProfileModule) ,canActivate: [AuthGuard]},
+    { path: 'admin', loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)},
     { path: 'home', component : HomeComponent},
     { path: '404', component : NotFoundComponent},
     { path: '500', component: InternalServerComponent },

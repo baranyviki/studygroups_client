@@ -1,7 +1,6 @@
 export interface RegistrationModel{
     firstName: string,
     lastName:string,
-    birthday:Date,
     gendertype: number,
     email:string,
     messengerName:string,

@@ -1,7 +1,5 @@
-<div>
-    <span>Choose file</span>
-    <span>{{file ? file.name : ' or drag and drop file here' }}</span>
-    <input class="file-input" type="file" #file placeholder="Choose file" style="display:none;">
-    <button mat-raised-button color="primary" type="button" (click)="file.click()">Upload File</button>
+<div class="file">
+    <span style="margin-right: 5px;">Choose file for {{label}}</span>
+    <input class="file-input" type="file" #file style="display:none;">
+    <button  matTooltip="{{tooltip}}" mat-raised-button color="primary" style="margin-left: 5px;" type="button" (click)="file.click()">Upload File</button>
 </div>
-<!-- <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar> -->
