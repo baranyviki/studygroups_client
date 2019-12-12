@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
 import { MatDialog } from '@angular/material';
 import { identifierModuleUrl } from '@angular/compiler';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class ErrorHandlerService {
     data: { }
   };
 
-  constructor(private router: Router, private dialog: MatDialog) { }
+  constructor(private router: Router, private dialog: MatDialog, private _snackBar: MatSnackBar) { }
  
   public handleError(error: HttpErrorResponse){
     if(error.status === 500){
@@ -51,18 +52,22 @@ export class ErrorHandlerService {
   }
   private handleOtherError(error: HttpErrorResponse){
     this.createErrorMessage(error);
-    console.log(this.dialogConfig);
-    this.dialogConfig.data = { 'errorMessage': this.errorMessage };
-    this.dialog.open(ErrorModalComponent, this.dialogConfig);
+    this.openSnackBar(this.errorMessage,"OK");
+    //this.dialogConfig.data = { 'errorMessage': this.errorMessage };
+    //this.dialog.open(ErrorModalComponent, this.dialogConfig);
   }
  
   private createErrorMessage(error: HttpErrorResponse){
-    this.errorMessage = error.error ? error.error.Message : error.error;
+    this.errorMessage = error.error.Message  ? error.error.Message : "Server unavailable.";
     // console.log(`${JSON.stringify(error)}`);
      console.log(error.error.Message);
      console.log(this.errorMessage);
     // console.log(error.statusText);
   }
 
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

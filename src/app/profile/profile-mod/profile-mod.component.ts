@@ -69,8 +69,7 @@ export class ProfileModComponent implements OnInit {
       this.profile.instagramName = profileFormValue.instagramName;
       this.profile.neptunCode = profileFormValue.neptunCode;
       this.profile.tutoringSubjects = profileFormValue.tutoringSubjects;
-      console.log('update:');
-      console.log(this.profile);
+     
 
       this.profileService.updateStudent(this.profile).subscribe(
         res=>{ 
