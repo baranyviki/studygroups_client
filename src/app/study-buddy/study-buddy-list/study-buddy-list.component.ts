@@ -41,7 +41,7 @@ export class StudyBuddyListComponent implements OnInit {
     this.getSubjects();
 
     this.studyBuddyForm = new FormGroup({      
-      subjectControl : new FormControl('', [Validators.required]),
+      subjectControl : new FormControl(''),
       commonCourseControl: new FormControl(),
       currentlyEnrolledControl:new FormControl(),
       anotherTeacherControl:new FormControl(),
@@ -84,23 +84,22 @@ export class StudyBuddyListComponent implements OnInit {
   }
 
   search() {
-    //const subjectId = (this.studyBuddyForm.get('subjectControl').value as GeneralSelectionItem).id;
+    const subjectId = (this.studyBuddyForm.get('subjectControl').value as GeneralSelectionItem).id;
     // this.studyBuddyService.getStudyBuddyList(subjectId).subscribe(result => {
     //   this.dataSource.data = result;
     // });
     let filters = {} as StudyBuddySearchModel;
-    filters.subjectId = this.studyBuddyForm.get('subjectControl').value.id;
-    filters.commonCourse = this.studyBuddyForm.get('commonCourseControl').value;
-    filters.currentlyEnrolled = this.studyBuddyForm.get('currentlyEnrolledControl').value;
-    filters.anotherTeacher = this.studyBuddyForm.get('anotherTeacherControl').value;
-    filters.completed = this.studyBuddyForm.get('completedControl').value;
-    filters.grade = this.studyBuddyForm.get('gradeControl').value;
-    filters.discipline = this.studyBuddyForm.get('disciplinesControl').value;
-  console.log(filters);
+    filters.subjectId = (subjectId === undefined) ? null : subjectId;
+    filters.commonCourse = (this.studyBuddyForm.get('commonCourseControl').value === null ) ? false : this.studyBuddyForm.get('commonCourseControl').value;
+    filters.currentlyEnrolled =(this.studyBuddyForm.get('currentlyEnrolledControl').value=== null ) ? false:this.studyBuddyForm.get('currentlyEnrolledControl').value;
+    filters.anotherTeacher = (this.studyBuddyForm.get('anotherTeacherControl').value === null ) ? false : this.studyBuddyForm.get('anotherTeacherControl').value;
+    filters.completed = (this.studyBuddyForm.get('completedControl').value=== null ) ? false : this.studyBuddyForm.get('completedControl').value;
+    filters.grade = (this.studyBuddyForm.get('gradeControl').value=== null )? 0 :this.studyBuddyForm.get('gradeControl').value;
+    filters.discipline = (this.studyBuddyForm.get('disciplinesControl').value=== null )? 0:this.studyBuddyForm.get('disciplinesControl').value;
     this.studyBuddyService.getStudyGroupSearchList(filters).subscribe(result =>{
       this.dataSource.data=result;
     },(error)=>{
-     // this.errorHandler.handleError(error);
+      this.errorHandler.handleError(error);
     });
 
   }

@@ -1,0 +1,31 @@
+<section fxLayout="row wrap" fxLayoutAlign="center start">
+    <mat-card fxFlex="40">
+        <mat-card-header>
+            <mat-card-title>About</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <table class="table table-striped">
+                <tr>
+                    <td> <label>Username: </label></td>
+                    <td>{{user.userName}}</td>
+                </tr>
+                <tr>
+                    <td><label>Email: </label></td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td><label>Disabled:</label></td>
+                    <td>{{user.isDisabled}}</td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <button mat-raised-button color="primary" *ngIf="!user.isDisabled" (click)="onDisable()">Disable</button>
+                <button mat-raised-button color="primary" *ngIf="user.isDisabled" (click)="onEnable()">Enable</button>
+                <button mat-raised-button color="accent"   (click)="onDelete()">Delete</button>
+                <button mat-raised-button   (click)="onCancel()">Cancel</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</section>

@@ -2,7 +2,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
 @Component({
   selector: 'app-menu-bar',
   templateUrl: './menu-bar.component.html',
@@ -11,14 +10,19 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class MenuBarComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
-  isLoggedInStudent :boolean = false;
-  isLoggedInAdmin :boolean = false;
-  constructor(private router :Router) { }
+  isLoggedInStudent: boolean = false;
+  isLoggedInAdmin: boolean = false;
+  constructor(private router: Router, private jwtHelperService: JwtHelperService) { }
 
   ngOnInit() {
-    let token=localStorage.getItem("jwt");
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(token);
+    let token = localStorage.getItem("jwt");
+    let decodedToken = this.jwtHelperService.decodeToken(token);
+    if (decodedToken['sub'] == 'Admin') {
+    this.isLoggedInAdmin = true;
+    }
+    if (decodedToken['sub'] == 'Student') {
+      this.isLoggedInStudent = true;
+    }
   }
 
   public onToggleSidenav = () => {
@@ -26,7 +30,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   logout() {
-     localStorage.removeItem("jwt");
-     this.router.navigate(['/login']);
+    localStorage.removeItem("jwt");
+    this.router.navigate(['/login']);
   }
 }

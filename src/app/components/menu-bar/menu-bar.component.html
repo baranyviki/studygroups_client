@@ -5,23 +5,32 @@
         </button>
     </div>
     <div style="margin-right: 30px;">
-        <a routerLink="/home" mat-button>
-            <mat-icon>scatter_plot</mat-icon> Home
+        <a routerlink="/home" mat-button>
+            <mat-icon>scatter_plot</mat-icon> home
         </a>
     </div>
     <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li>
-                <a mat-button  routerLinkActive="active"  routerLink="/profile"> My profile </a>
+            <li *ngIf='isLoggedInStudent'>
+                <a  mat-button  routerLinkActive="active"  routerLink="/profile"> My profile </a>
             </li>
-            <li>
-                <a mat-button  routerLinkActive="active"  routerLink="/study-buddy/list">Study Group</a>
+            <li *ngIf='isLoggedInStudent'>
+                <a    mat-button  routerLinkActive="active"  routerLink="/study-buddy/list">Study Group</a>
             </li>
-            <li>
-                <a mat-button  routerLinkActive="active"  routerLink="/study-buddy/study-team-search">Team project</a>
+            <li *ngIf='isLoggedInStudent'>
+                <a   mat-button  routerLinkActive="active"  routerLink="/study-buddy/study-team-search">Team project</a>
             </li>
-            <li>
-                <a mat-button  routerLinkActive="active"  routerLink="/study-buddy/tutor-search">Find Tutor</a>
+            <li *ngIf='isLoggedInStudent' >
+                <a  mat-button  routerLinkActive="active"  routerLink="/study-buddy/tutor-search">Find Tutor</a>
+            </li>
+            <li *ngIf='isLoggedInAdmin'>
+                <a   mat-button  routerLinkActive="active"  routerLink="/admin/dashboard">Dashboard</a>
+            </li>
+            <li *ngIf='isLoggedInAdmin'>
+                <a   mat-button  routerLinkActive="active"  routerLink="/admin/subject-list">Manage Subjects</a>
+            </li>
+            <li *ngIf='isLoggedInAdmin'>
+                <a   mat-button  routerLinkActive="active"  routerLink="/admin/user-list">Manage Users</a>
             </li>
         </ul>
     </div>

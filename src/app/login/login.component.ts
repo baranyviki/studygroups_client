@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("username", form.value.Username);
         localStorage.setItem("jwt", token);
         this.invalidLogin = false;
-        this.router.navigate(["/study-buddy"]);
+        this.router.navigate(["/home"]);
       }, (err) => {
         this.invalidLogin = true;
         this.errorMessage = err.error.Message;
