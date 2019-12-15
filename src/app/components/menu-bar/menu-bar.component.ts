@@ -16,12 +16,15 @@ export class MenuBarComponent implements OnInit {
 
   ngOnInit() {
     let token = localStorage.getItem("jwt");
-    let decodedToken = this.jwtHelperService.decodeToken(token);
-    if (decodedToken['sub'] == 'Admin') {
-    this.isLoggedInAdmin = true;
-    }
-    if (decodedToken['sub'] == 'Student') {
-      this.isLoggedInStudent = true;
+    if (token) {
+      let decodedToken = this.jwtHelperService.decodeToken(token);
+
+      if (decodedToken['Role'] == 'Admin') {
+        this.isLoggedInAdmin = true;
+      }
+      if (decodedToken['Role'] == 'Student') {
+        this.isLoggedInStudent = true;
+      }
     }
   }
 
