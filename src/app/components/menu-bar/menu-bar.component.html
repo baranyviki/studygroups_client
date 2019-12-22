@@ -11,25 +11,25 @@
     </div>
     <div fxFlex fxLayout fxLayoutAlign="start" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-            <li *ngIf='isLoggedInStudent'>
+            <li *ngIf='isStudent()'>
                 <a  mat-button  routerLinkActive="active"  routerLink="/profile"> My profile </a>
             </li>
-            <li *ngIf='isLoggedInStudent'>
+            <li *ngIf='isStudent()'>
                 <a    mat-button  routerLinkActive="active"  routerLink="/study-buddy/list">Study Group</a>
             </li>
-            <li *ngIf='isLoggedInStudent'>
+            <li *ngIf='isStudent()'>
                 <a   mat-button  routerLinkActive="active"  routerLink="/study-buddy/study-team-search">Team project</a>
             </li>
-            <li *ngIf='isLoggedInStudent' >
+            <li *ngIf='isStudent()' >
                 <a  mat-button  routerLinkActive="active"  routerLink="/study-buddy/tutor-search">Find Tutor</a>
             </li>
-            <li *ngIf='isLoggedInAdmin'>
+            <li *ngIf='isAdmin()'>
                 <a   mat-button  routerLinkActive="active"  routerLink="/admin/dashboard">Dashboard</a>
             </li>
-            <li *ngIf='isLoggedInAdmin'>
+            <li *ngIf='isAdmin()'>
                 <a   mat-button  routerLinkActive="active"  routerLink="/admin/subject-list">Manage Subjects</a>
             </li>
-            <li *ngIf='isLoggedInAdmin'>
+            <li *ngIf='isAdmin()'>
                 <a   mat-button  routerLinkActive="active"  routerLink="/admin/user-list">Manage Users</a>
             </li>
         </ul>
@@ -37,7 +37,7 @@
     <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <button mat-icon-button (click)="logout()">
+                <button mat-icon-button (click)="onLogout()">
                     <mat-icon>input</mat-icon>
                 </button>
             </li>

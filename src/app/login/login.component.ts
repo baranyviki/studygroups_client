@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorHandlerService } from '../shared/error-handler.service';
 import { MatDialog } from '@angular/material';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material';
 export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
-    private router: Router, private errorHandler: ErrorHandlerService, private dialog:MatDialog ) { }
+    private router: Router, private errorHandler: ErrorHandlerService, private dialog: MatDialog) { }
 
   invalidLogin: boolean;
   public errorMessage: string = '';
@@ -23,12 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm) {
+    if (form.invalid)
+      return;
+
     let credentials = JSON.stringify(form.value);
-    this.loginService.loginAUT(credentials).
-      subscribe(response => {
-        let token = (<any>response).token;
-        localStorage.setItem("username", form.value.Username);
-        localStorage.setItem("jwt", token);
+    this.loginService.loginAUT(credentials).pipe(first())
+      .subscribe(response => {
+        // let token = (<any>response).token;
+        // localStorage.setItem("username", form.value.Username);
+        // localStorage.setItem("jwt", token);
         this.invalidLogin = false;
         this.router.navigate(["/home"]);
       }, (err) => {

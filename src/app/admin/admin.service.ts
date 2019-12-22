@@ -27,7 +27,9 @@ export class AdminService extends HttpBaseService {
   public patchUser(userPatchDto: UserPatchDTO) {
     return this.http.patch<UserPatchDTO>(this.createCompleteRoute(`users/${userPatchDto.id}`), userPatchDto, this.generateHeaderWithContentTypeAndAuthorization());
   }
-
+  public getStudentSemesterAvg(): Observable<number[]>  {
+    return this.http.get<number[]>(this.createCompleteRoute(`student/reports/semester-avgs`), this.generateHeaderWithContentTypeAndAuthorization());
+  }
   public deleteUser() {
 
   }

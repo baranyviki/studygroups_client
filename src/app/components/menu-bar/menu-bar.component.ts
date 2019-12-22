@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -10,15 +11,24 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class MenuBarComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
+  @Output() public logout = new EventEmitter();
   isLoggedInStudent: boolean = false;
   isLoggedInAdmin: boolean = false;
-  constructor(private router: Router, private jwtHelperService: JwtHelperService) { }
+
+  currentUserRole :string;
+
+  constructor(private router: Router, private jwtHelperService: JwtHelperService, private loginService:LoginService) {
+    this.loginService.currentUserRole.subscribe(x => this.currentUserRole = x);
+   }
 
   ngOnInit() {
+    //this.onAuth();
+  }
+
+  public onAuth() {
     let token = localStorage.getItem("jwt");
     if (token) {
       let decodedToken = this.jwtHelperService.decodeToken(token);
-
       if (decodedToken['Role'] == 'Admin') {
         this.isLoggedInAdmin = true;
       }
@@ -32,8 +42,21 @@ export class MenuBarComponent implements OnInit {
     this.sidenavToggle.emit();
   }
 
-  logout() {
-    localStorage.removeItem("jwt");
+  onLogout() {
+    this.loginService.Logout();
     this.router.navigate(['/login']);
   }
+
+public isAdmin() :boolean
+{
+return this.currentUserRole === "Admin";
+
+}
+
+public isStudent() :boolean
+{
+  return this.currentUserRole === "Student";
+
+}
+
 }
