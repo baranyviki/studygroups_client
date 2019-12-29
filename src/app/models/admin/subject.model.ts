@@ -1,8 +1,8 @@
-export interface SubjectModifyModel{
+export interface SubjectModel{
     subjectid:string;
     subjectcode:string;
     name:string;
-    subjecttype:number;
+    subjectType:number;
     credits:number;
     suggestedsemester:number;
 }

@@ -35,10 +35,16 @@ export class SubjectListComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+  redirectToCreate()
+  {
+    let url: string = `/admin/subject/create`;
+    this.router.navigate([url]);
+  }
+  
   getSubjects() {
     this.adminService.getAllSubject().subscribe(result => {
       this.dataSource.data = result;
-      console.log(result);
+     // console.log(result);
     },
       (error) => {
         this.errorHandler.handleError(error);

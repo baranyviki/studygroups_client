@@ -1,4 +1,5 @@
-import { SubjectModel } from './subject.model';
+import { GeneralSelectionItem } from '../shared/general-selection-item.model';
+
 export interface UserProfileModel{
     firstName: string,
     lastName:string,
@@ -10,5 +11,5 @@ export interface UserProfileModel{
     password:string,
     neptunCode:string,
     imagePath:string,
-    tutoringSubjects:SubjectModel[]
+    tutoringSubjects:GeneralSelectionItem[]
 }

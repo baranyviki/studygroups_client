@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserProfileModel } from '../models/profile/userProfile.model';
 import { GeneralSelectionItem } from '../models/shared/general-selection-item.model';
-import { SubjectModel } from '../models/profile/subject.model';
+import { SubjectListModel } from '../models/profile/subject.model';
 
 @Injectable({
     providedIn: 'root'
@@ -21,8 +21,8 @@ export class ProfileService extends HttpBaseService {
         return this.http.get<UserProfileModel>(this.createCompleteRoute(`student/details/`), this.generateHeaderWithContentTypeAndAuthorization());
     }
 
-    public getStudentCompletedSubjects(): Observable<SubjectModel[]> {
-        return this.http.get<SubjectModel[]>(this.createCompleteRoute(`subject/completed`), this.generateHeaderWithContentTypeAndAuthorization());
+    public getStudentCompletedSubjects(): Observable<GeneralSelectionItem[]> {
+        return this.http.get<GeneralSelectionItem[]>(this.createCompleteRoute(`subject/completed`), this.generateHeaderWithContentTypeAndAuthorization());
     }
 
     public updateStudent(userProfile: UserProfileModel) {

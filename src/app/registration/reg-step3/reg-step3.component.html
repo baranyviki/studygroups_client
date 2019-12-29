@@ -2,16 +2,16 @@
     <div id="account-details" [formGroup]="regForm">
         <div class="form-group col-md-4" formGroupName="accountDetails" fxFlex="75%" fxFlex.xs="100%">
             <mat-form-field>
-                <input matInput placeholder="Username" class="form-control" formControlName="username" />
+                <input matInput placeholder="Username*" class="form-control" formControlName="username" />
             </mat-form-field>
             <mat-form-field>
-                <input matInput type="password" placeholder="Password" class="form-control"
+                <input matInput type="password" placeholder="Password* (6 characters minimum)" class="form-control"
                     formControlName="password" />
                 <!-- <mat-error *ngIf="hasError('password', 'minlength')">Password has to be at least 6 characters</mat-error> -->
 
             </mat-form-field>
             <div flexLayout="column">
-                <app-file-upload label="profile image:" tooltip=".png, .jpg, .bmp" class="form-control" formControlName="image" [progress]="progress"></app-file-upload>
+                <app-file-upload label="profile image:" accepts="image/*" tooltip="image type" class="form-control" formControlName="image" [progress]="progress"></app-file-upload>
             </div>
         </div>
     </div>

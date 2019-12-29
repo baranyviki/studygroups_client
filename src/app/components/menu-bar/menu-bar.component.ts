@@ -15,11 +15,11 @@ export class MenuBarComponent implements OnInit {
   isLoggedInStudent: boolean = false;
   isLoggedInAdmin: boolean = false;
 
-  currentUserRole :string;
+  currentUserRole: string;
 
-  constructor(private router: Router, private jwtHelperService: JwtHelperService, private loginService:LoginService) {
+  constructor(private router: Router, private jwtHelperService: JwtHelperService, private loginService: LoginService) {
     this.loginService.currentUserRole.subscribe(x => this.currentUserRole = x);
-   }
+  }
 
   ngOnInit() {
     //this.onAuth();
@@ -42,21 +42,25 @@ export class MenuBarComponent implements OnInit {
     this.sidenavToggle.emit();
   }
 
+  onHome() {
+    console.log('home clicked');
+
+    this.router.navigate(['/home']);
+  }
+
   onLogout() {
     this.loginService.Logout();
     this.router.navigate(['/login']);
   }
 
-public isAdmin() :boolean
-{
-return this.currentUserRole === "Admin";
+  public isAdmin(): boolean {
+    return this.currentUserRole === "Admin";
 
-}
+  }
 
-public isStudent() :boolean
-{
-  return this.currentUserRole === "Student";
+  public isStudent(): boolean {
+    return this.currentUserRole === "Student";
 
-}
+  }
 
 }

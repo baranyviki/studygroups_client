@@ -1,5 +1,5 @@
 <div class="file">
     <span style="margin-right: 5px;">Choose file for {{label}}</span>
-    <input class="file-input" type="file" #file style="display:none;">
+    <input class="file-input" accept="{{accepts}}" type="file" #file style="display:none;">
     <button  matTooltip="{{tooltip}}" mat-raised-button color="primary" style="margin-left: 5px;" type="button" (click)="file.click()">Upload File</button>
 </div>

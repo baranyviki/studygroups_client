@@ -60,7 +60,7 @@
                     <mat-label>Subjects tutoring</mat-label>
                     <mat-select formControlName="tutoringSubjects" multiple [(ngModel)]="current_options"
                         [compareWith]="compareFn">
-                        <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub.name}}</mat-option>
+                        <mat-option *ngFor="let sub of subjects" [value]="sub">{{sub.displayName}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 

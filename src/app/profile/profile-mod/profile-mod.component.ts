@@ -4,8 +4,9 @@ import { ProfileService } from '../profile.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 import { Location } from '@angular/common';
-import { SubjectModel } from 'src/app/models/profile/subject.model';
+import { SubjectListModel } from 'src/app/models/profile/subject.model';
 import { MatSnackBar } from '@angular/material';
+import { GeneralSelectionItem } from 'src/app/models/shared/general-selection-item.model';
 
 @Component({
   selector: 'app-profile-mod',
@@ -16,8 +17,8 @@ export class ProfileModComponent implements OnInit {
 
   profile = {} as UserProfileModel;
   public profileForm: FormGroup;
-  public subjects: SubjectModel[];
-  public current_options: SubjectModel[];
+  public subjects: GeneralSelectionItem[];
+  public current_options: GeneralSelectionItem[];
 
 
   constructor(private _snackBar: MatSnackBar,private profileService: ProfileService, private errorHandler: ErrorHandlerService, private location: Location) { }
@@ -53,6 +54,7 @@ export class ProfileModComponent implements OnInit {
 
     this.profileService.getStudentCompletedSubjects().subscribe(res => {
       this.subjects = res;
+      console.log(res);
     },
       err => {
       });
@@ -70,7 +72,7 @@ export class ProfileModComponent implements OnInit {
       this.profile.neptunCode = profileFormValue.neptunCode;
       this.profile.tutoringSubjects = profileFormValue.tutoringSubjects;
      
-
+console.log(`profile data before submit: ${JSON.stringify(this.profile)}`);
       this.profileService.updateStudent(this.profile).subscribe(
         res=>{ 
           this.openSnackBar('Profile update was successful','OK');
@@ -80,8 +82,8 @@ export class ProfileModComponent implements OnInit {
     }
   }
 
-  public compareFn(c1: SubjectModel, c2: SubjectModel): boolean {
-    return c1 && c2 ? c1.subjectID === c2.subjectID : c1 === c2;
+  public compareFn(c1: GeneralSelectionItem, c2: GeneralSelectionItem): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 
   public validateControl(controlName: string) {

@@ -17,7 +17,7 @@ export class RegistrationHomeComponent implements OnInit {
     let personalDetails = new FormGroup({
       'firstname': new FormControl(null, Validators.required),
       'lastname': new FormControl(null, Validators.required),
-      'gender': new FormControl(null)
+      'gender': new FormControl(null, Validators.required)
     });
 
     let contactDetails = new FormGroup({

@@ -17,6 +17,7 @@ export class FileUploadComponent implements ControlValueAccessor {
   @Input() progress;
   @Input() label :string;
   @Input() tooltip :string;
+  @Input() accepts: string;
 
   onChange: Function;
   private file: File | null = null;
@@ -25,9 +26,8 @@ export class FileUploadComponent implements ControlValueAccessor {
     const file = event && event.item(0);
     this.onChange(file);
     this.file = file;
-    console.log('file in component');
-
-    console.log(file.name);
+    //console.log('file in component');
+    //console.log(file.name);
   }
 
   constructor(private host: ElementRef<HTMLInputElement>) { }

@@ -53,7 +53,13 @@ export class UserModComponent implements OnInit {
   }
 
   onDelete() {
-
+    this.adminService.deleteUser(this.user.id).subscribe(result => {
+      this.openSnackBar(`User was deleted.`,'OK');
+      this.location.back();
+    }
+      , error => {
+        this.errorHandler.handleError(error);
+      });
   }
 
   onEnable() {

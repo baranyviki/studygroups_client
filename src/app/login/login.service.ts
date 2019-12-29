@@ -19,8 +19,7 @@ export class LoginService extends HttpBaseService {
     super();
     let role = this.jwtHelperService.decodeToken(localStorage.getItem('jwt'));
     if (role) {
-      console.log(role);
-      this.currentUserSubject = new BehaviorSubject<string>(role);
+      this.currentUserSubject = new BehaviorSubject<string>(role['Role']);
     }
     else {
       this.currentUserSubject = new BehaviorSubject<string>('');
@@ -38,7 +37,7 @@ export class LoginService extends HttpBaseService {
           localStorage.setItem("jwt", token);
           if (token) {
             let decodedToken = this.jwtHelperService.decodeToken(token);
-            console.log('Role after login: ' + decodedToken['Role'])
+            //console.log('Role after login: ' + decodedToken['Role'])
             this.currentUserSubject.next(decodedToken['Role']);
           }
         }
