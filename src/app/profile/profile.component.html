@@ -33,7 +33,8 @@
                 </tr>
                 <tr>
                     <td><label>Gender type:</label></td>
-                    <td>{{profile.genderType}}</td>
+                    <td *ngIf="profile.genderType">Male</td>
+                    <td *ngIf="!profile.genderType">Female</td>
                 </tr>
                 <tr *ngIf="isLoggedInUsersProfile">
                     <td><label>Neptun code:</label></td>

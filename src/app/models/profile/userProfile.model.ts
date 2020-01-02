@@ -3,11 +3,11 @@ import { GeneralSelectionItem } from '../shared/general-selection-item.model';
 export interface UserProfileModel{
     firstName: string,
     lastName:string,
-    gendertype: number,
+    genderType: number,
     email:string,
     messengerName:string,
     instagramName:string,
-    username:string,
+    userName:string,
     password:string,
     neptunCode:string,
     imagePath:string,
