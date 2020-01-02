@@ -1,6 +1,6 @@
 # StudyGroupsClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.13.
+Available on: http://79.143.181.189/studygroups/
 
 ## Development server
 
