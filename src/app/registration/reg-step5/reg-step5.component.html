@@ -1,13 +1,13 @@
 <mat-card fxFlex="80%" fxFlex.xs="100%">
     <div id="neptun-details" [formGroup]="regForm">
-        <div class="form-group col-md-4" formGroupName="neptunDetails" fxFlex="75%" fxFlex.xs="100%">
+        <div class="form-group col-md-4" formGroupName="neptunDetails" >
             <mat-form-field>
-                <input matInput placeholder="NeptunCode" class="form-control" formControlName="neptuncode" />
-            </mat-form-field> 
-            <label>Grade book export</label>
-            <app-file-upload class="form-control" formControlName="gradebook" [progress]="progress"></app-file-upload>
-            <label>Courses export</label>
-            <app-file-upload class="form-control" formControlName="courses" [progress]="progress"></app-file-upload>
+                <input matInput placeholder="NeptunCode*" class="form-control" formControlName="neptuncode" />
+            </mat-form-field>
+            <app-file-upload label="grade book export*" accepts=".csv" tooltip=".csv format"  class="form-control" formControlName="gradebook"
+            ></app-file-upload>
+            <app-file-upload style="margin-top: 8px;"  accepts=".csv" label="courses export*" tooltip=".csv format" class="form-control" formControlName="courses"
+            ></app-file-upload>
         </div>
     </div>
     <br />

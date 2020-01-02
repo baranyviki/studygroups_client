@@ -32,14 +32,11 @@
                     <td>{{profile.userName}}</td>
                 </tr>
                 <tr>
-                    <td> <label>Date of birth: </label></td>
-                    <td>{{profile.dateOfBirth}}</td>
-                </tr>
-                <tr>
                     <td><label>Gender type:</label></td>
-                    <td>{{profile.genderType}}</td>
+                    <td *ngIf="profile.genderType">Male</td>
+                    <td *ngIf="!profile.genderType">Female</td>
                 </tr>
-                <tr>
+                <tr *ngIf="isLoggedInUsersProfile">
                     <td><label>Neptun code:</label></td>
                     <td>{{profile.neptunCode}}</td>
                 </tr>
@@ -51,7 +48,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let subject of profile.tutoringSubjects">
-                        <td>{{subject.name}}</td>
+                        <td>{{subject.displayName}}</td>
                     </tr>
                 </tbody>
             </table>

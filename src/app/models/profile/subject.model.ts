@@ -1,5 +1,4 @@
-export interface SubjectModel{
+export interface SubjectListModel{
     subjectID:string,
     name:string
-
 }

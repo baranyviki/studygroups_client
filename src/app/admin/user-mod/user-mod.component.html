@@ -1,0 +1,40 @@
+<section fxLayout="row wrap" fxLayoutAlign="center start">
+    <mat-card fxFlex="40">
+        <mat-card-header>
+            <mat-card-title>Manage user settings</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <table class="table table-striped">
+                <tr>
+                    <td> <label style="font-weight: bold;">Username </label></td>
+                    <td>{{user.userName}}</td>
+                </tr>
+                <tr>
+                    <td><label style="font-weight: bold;">Email </label></td>
+                    <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                    <td><label style="font-weight: bold;">Enabled</label></td>
+                    <td>
+                        <mat-chip-list selectable='false'>
+                            <!-- <mat-chip [color]="user.isDisabled ? 'warn' : ''" selected>
+                                <mat-icon class="mat-18">{{user.isDisabled ? 'clear' : 'done'}}</mat-icon>
+                            </mat-chip> -->
+                                <mat-icon  [color]="user.isDisabled ? 'warn' : 'primary'" class="mat-18">{{user.isDisabled ? 'clear' : 'done'}}</mat-icon>
+                            
+                        </mat-chip-list>
+                    </td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <div fxLayout=" row" fxLayoutAlign="end center">
+                <button mat-button color="warn" *ngIf="!user.isDisabled"
+                    (click)="onDisable()">Disable</button>
+                <button mat-button color="primary" *ngIf="user.isDisabled" (click)="onEnable()">Enable</button>
+                <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+                <button mat-raised-button (click)="onCancel()">Cancel</button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</section>

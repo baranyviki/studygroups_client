@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
 import { SuccessModalComponent } from './modals/success-modal/success-modal.component';
 import { ErrorHandlerService } from './error-handler.service';
-import { MatDialogModule,MatButtonModule } from '@angular/material';
+import { MatDialogModule,MatButtonModule, MatSnackBarModule } from '@angular/material';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { MatDialogModule,MatButtonModule } from '@angular/material';
   imports: [
     CommonModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   exports:[
     ErrorModalComponent,

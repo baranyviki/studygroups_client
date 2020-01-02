@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-reg-step1',
@@ -15,11 +15,20 @@ export class RegStep1Component implements OnInit {
   ngOnInit() {
   }
 
-  step1Submitted(){
-    this.regForm.get('personalDetails').get('firstname').markAsTouched();
-    this.regForm.get('personalDetails').get('firstname').updateValueAndValidity();
-    this.regForm.get('personalDetails').get('lastname').markAsTouched();
-    this.regForm.get('personalDetails').get('lastname').updateValueAndValidity();
+  step1Submitted() {
+  //   this.regForm.get('personaldetails').get('firstname').markAsTouched();
+  //   this.regForm.get('personaldetails').get('firstname').updateValueAndValidity();
+  //   this.regForm.get('personaldetails').get('lastname').markAsTouched();
+  //   this.regForm.get('personaldetails').get('lastname').updateValueAndValidity();
   }
+
+  // public hasError(controlName: string, errorName: string) {
+
+  //   if (this.regForm.controls[controlName].hasError(errorName))
+  //     return true;
+
+  //   return false;
+  // }
+
 
 }

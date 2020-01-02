@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-menu-bar',
@@ -11,25 +11,56 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class MenuBarComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
-  isLoggedInStudent :boolean = false;
-  isLoggedInAdmin :boolean = false;
-  constructor(private router :Router) { }
+  @Output() public logout = new EventEmitter();
+  isLoggedInStudent: boolean = false;
+  isLoggedInAdmin: boolean = false;
+
+  currentUserRole: string;
+
+  constructor(private router: Router, private jwtHelperService: JwtHelperService, private loginService: LoginService) {
+    this.loginService.currentUserRole.subscribe(x => this.currentUserRole = x);
+  }
 
   ngOnInit() {
-    let token=localStorage.getItem("jwt");
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(token);
-    console.log('token: ');
-    console.log();
-    console.log(decodedToken.sub);    
+    //this.onAuth();
+  }
+
+  public onAuth() {
+    let token = localStorage.getItem("jwt");
+    if (token) {
+      let decodedToken = this.jwtHelperService.decodeToken(token);
+      if (decodedToken['Role'] == 'Admin') {
+        this.isLoggedInAdmin = true;
+      }
+      if (decodedToken['Role'] == 'Student') {
+        this.isLoggedInStudent = true;
+      }
+    }
   }
 
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
   }
 
-  logout() {
-     localStorage.removeItem("jwt");
-     this.router.navigate(['/login']);
+  onHome() {
+    console.log('home clicked');
+
+    this.router.navigate(['/home']);
   }
+
+  onLogout() {
+    this.loginService.Logout();
+    this.router.navigate(['/login']);
+  }
+
+  public isAdmin(): boolean {
+    return this.currentUserRole === "Admin";
+
+  }
+
+  public isStudent(): boolean {
+    return this.currentUserRole === "Student";
+
+  }
+
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormControlName } from '@angular/forms';
 import { GeneralSelectionItem } from 'src/app/models/shared/general-selection-item.model';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { StudyBuddyService } from '../study-buddy.service';
 import { StudyBuddyListItem } from 'src/app/models/study-buddy/study-buddy-list-item.model';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Router } from '@angular/router';
+import { StudyBuddySearchModel } from 'src/app/models/study-buddy/study-buddy-search.model';
+import { ErrorHandlerService } from 'src/app/shared/error-handler.service';
 
 @Component({
   selector: 'app-study-buddy-list',
@@ -14,17 +17,20 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 })
 export class StudyBuddyListComponent implements OnInit {
 
-  subjectControl = new FormControl('', [Validators.required]);
   subjects: GeneralSelectionItem[];
   filteredSubjects: Observable<GeneralSelectionItem[]>;
   dataSource: MatTableDataSource<StudyBuddyListItem>;
-  displayedColumns: string[] = ['name', 'email'];
+  displayedColumns: string[] = ['name', 'email','details'];
+
+  public studyBuddyForm :FormGroup;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private studyBuddyService: StudyBuddyService
+    private studyBuddyService: StudyBuddyService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit() {
@@ -33,6 +39,16 @@ export class StudyBuddyListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.getSubjects();
+
+    this.studyBuddyForm = new FormGroup({      
+      subjectControl : new FormControl(''),
+      commonCourseControl: new FormControl(),
+      currentlyEnrolledControl:new FormControl(),
+      anotherTeacherControl:new FormControl(),
+      completedControl:new FormControl(),
+      gradeControl:new FormControl(),
+      disciplinesControl:new FormControl()
+    });
   }
 
   getSubjects() {
@@ -41,7 +57,7 @@ export class StudyBuddyListComponent implements OnInit {
     },
       (error) => { },
       () => {
-        this.filteredSubjects = this.subjectControl.valueChanges
+        this.filteredSubjects = this.studyBuddyForm.get('subjectControl').valueChanges
           .pipe(
             startWith(''),
             map(value => typeof value === 'string' ? value : value.name),
@@ -50,22 +66,42 @@ export class StudyBuddyListComponent implements OnInit {
       });
   }
 
+  public redirectToDetails = (id: string) => {
+    let url: string = `/study-buddy/profile/${id}`;
+    this.router.navigate([url]);
+  }
+
   displayFn(item?: GeneralSelectionItem): string | undefined {
     return item ? item.displayName : undefined;
   }
 
   private _filter(value: string): GeneralSelectionItem[] {
-    console.log(value);
+    
     const filterValue = value.toLowerCase();
 
     return this.subjects.filter(subject => subject.displayName.toLowerCase().includes(filterValue));
+    
   }
 
   search() {
-    const subjectId = (this.subjectControl.value as GeneralSelectionItem).id;
-    this.studyBuddyService.getStudyBuddyList(subjectId).subscribe(result => {
-      this.dataSource.data = result;
+    const subjectId = (this.studyBuddyForm.get('subjectControl').value as GeneralSelectionItem).id;
+    // this.studyBuddyService.getStudyBuddyList(subjectId).subscribe(result => {
+    //   this.dataSource.data = result;
+    // });
+    let filters = {} as StudyBuddySearchModel;
+    filters.subjectId = (subjectId === undefined) ? null : subjectId;
+    filters.commonCourse = (this.studyBuddyForm.get('commonCourseControl').value === null ) ? false : this.studyBuddyForm.get('commonCourseControl').value;
+    filters.currentlyEnrolled =(this.studyBuddyForm.get('currentlyEnrolledControl').value=== null ) ? false:this.studyBuddyForm.get('currentlyEnrolledControl').value;
+    filters.anotherTeacher = (this.studyBuddyForm.get('anotherTeacherControl').value === null ) ? false : this.studyBuddyForm.get('anotherTeacherControl').value;
+    filters.completed = (this.studyBuddyForm.get('completedControl').value=== null ) ? false : this.studyBuddyForm.get('completedControl').value;
+    filters.grade = (this.studyBuddyForm.get('gradeControl').value=== null )? 0 :this.studyBuddyForm.get('gradeControl').value;
+    filters.discipline = (this.studyBuddyForm.get('disciplinesControl').value=== null )? 0:this.studyBuddyForm.get('disciplinesControl').value;
+    this.studyBuddyService.getStudyGroupSearchList(filters).subscribe(result =>{
+      this.dataSource.data=result;
+    },(error)=>{
+      this.errorHandler.handleError(error);
     });
+
   }
 
   applyFilter(filterValue: string) {

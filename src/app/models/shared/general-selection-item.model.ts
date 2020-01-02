@@ -1,4 +1,4 @@
 export interface GeneralSelectionItem {
-    id: number,
+    id: string,
     displayName: string
 }
